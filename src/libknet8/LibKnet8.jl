@@ -4,7 +4,7 @@ module LibKnet8
 
 export libknet8, @knet8, @knet8r, gpu
 using CUDA, Libdl, Pkg.Artifacts
-const libknet8 =  try Libdl.find_library(["libknet8"],[artifact"libknet8"]); catch ex; [] end;
+const libknet8 =  try Libdl.find_library(["libknet8"],[artifact"libknet8"]); catch ex; return [] end;
 #const libknet8 = Libdl.find_library(["libknet8"], @static ((Base.Sys.isapple() && Base.Sys.ARCH==:aarch64) || (occursin("unknown", Base.Sys.MACHINE)) ) ? [] : [artifact"libknet8"])
 
 include("ops.jl")
